@@ -10,6 +10,15 @@ for (const config of themes) {
   process.stdout.write(`\n=== ${config.name} ===\n`);
   const theme = defineTheme(config);
 
+  const statusLine = Object.values(theme.status)
+    .map(
+      (entry) =>
+        `${entry.role} h${Math.round(entry.hue)}` +
+        `(${entry.movedBy >= 0 ? "+" : ""}${entry.movedBy}°${entry.repelled ? " repelled" : ""})`,
+    )
+    .join("  ");
+  process.stdout.write(`  status: ${statusLine}\n`);
+
   for (const mode of ["light", "dark"] as const) {
     const tokens = theme[mode];
     const audit = theme.chartAudit[mode];

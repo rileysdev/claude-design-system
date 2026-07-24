@@ -26,6 +26,30 @@ Every text pair is contrast-checked at build time against WCAG AA (4.5:1 for
 body, 3:1 for focus rings). A theme whose seeds cannot produce a legible system
 fails the build rather than shipping.
 
+## Status colours
+
+`destructive`, `success`, `warning` and `info` are **derived from the primary
+seed**, not fixed. Each has a canonical hue and a band it may never leave — red
+stays red — and within that band it is pulled toward the brand hue so the
+statuses belong to the palette instead of looking bolted on.
+
+Two things keep that from breaking meaning:
+
+- If a status would land close enough to the brand hue to be confusable, it is
+  pushed **away** instead. This matters most for warm brands, where a fixed red
+  sits almost on top of the primary.
+- Adjacent statuses are held apart too, and the build fails if any pair is
+  within 25°, naming the offending pair.
+
+Status fills use a lightness chosen per role rather than a shared ramp step,
+because lightness is not negotiable for some hues: amber only reads as amber
+while it is light, and at the step that makes red look confident it turns brown.
+
+Tune with `statusHarmony` (0–1) on the theme: `0` pins each status to its
+canonical hue, higher values pull harder toward the brand. Supplying an explicit
+seed (`seeds.destructive`) overrides derivation entirely and skips the gate —
+that becomes your responsibility.
+
 ## Chart colours
 
 `chart-1` … `chart-5` are a categorical palette derived from the primary hue.

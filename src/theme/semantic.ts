@@ -1,6 +1,12 @@
 import { generateRamp, formatOklch, parseSeed, type Ramp } from "./ramp";
 import { ContrastChecker, pickForeground } from "./contrast";
 import { generateChartPalette, type Mode } from "./chart-palette";
+import {
+  checkStatusSeparation,
+  deriveStatusSeeds,
+  type StatusDerivation,
+  type StatusRole,
+} from "./status";
 
 export interface ThemeSeeds {
   /** The brand colour. Everything else keys off its hue. */
@@ -29,6 +35,16 @@ export interface ThemeConfig {
    * one system rather than a colour bolted onto Tailwind grey.
    */
   neutralChroma?: number;
+  /**
+   * How strongly status colours are pulled toward the brand hue, 0–1.
+   *
+   * 0 pins destructive/success/warning/info to their canonical hues, which is
+   * the safest reading but makes them look bolted on. 1 pulls each to the edge
+   * of the hue range where it still means what it says. Regardless of this
+   * value, a status is pushed away from the brand hue when the two would be
+   * confusable, and the build fails if they still are.
+   */
+  statusHarmony?: number;
 }
 
 export const SEMANTIC_TOKENS = [
@@ -77,13 +93,6 @@ export interface Ramps {
   info: Ramp;
 }
 
-const DEFAULT_STATUS_SEEDS = {
-  destructive: "oklch(0.58 0.22 27)",
-  success: "oklch(0.6 0.15 155)",
-  warning: "oklch(0.72 0.16 75)",
-  info: "oklch(0.62 0.15 245)",
-} as const;
-
 const WHITE = "oklch(1 0 0)";
 
 export function buildRamps(config: ThemeConfig): Ramps {
@@ -98,16 +107,21 @@ export function buildRamps(config: ThemeConfig): Ramps {
   // deliberately tiny peak so greys read as grey, just warmed toward the brand.
   const neutralPeak = config.neutralChroma ?? (seeds.neutral ? undefined : 0.014);
 
+  // Status colours are derived from the brand rather than fixed, so they move
+  // with the theme. An explicit seed always wins — some brands have a mandated
+  // error red — but then it is the author's job to keep it distinguishable.
+  const status = deriveStatusSeeds(seeds.primary, { harmony: config.statusHarmony });
+
   return {
     primary: generateRamp(seeds.primary),
     neutral: generateRamp(neutralSeed, {
       curve: "neutral",
       peakChroma: neutralPeak,
     }),
-    destructive: generateRamp(seeds.destructive ?? DEFAULT_STATUS_SEEDS.destructive),
-    success: generateRamp(seeds.success ?? DEFAULT_STATUS_SEEDS.success),
-    warning: generateRamp(seeds.warning ?? DEFAULT_STATUS_SEEDS.warning),
-    info: generateRamp(seeds.info ?? DEFAULT_STATUS_SEEDS.info),
+    destructive: generateRamp(seeds.destructive ?? status.destructive.seed),
+    success: generateRamp(seeds.success ?? status.success.seed),
+    warning: generateRamp(seeds.warning ?? status.warning.seed),
+    info: generateRamp(seeds.info ?? status.info.seed),
   };
 }
 
@@ -122,8 +136,9 @@ export function buildSemanticTokens(
   ramps: Ramps,
   mode: Mode,
   checker: ContrastChecker,
+  status: Record<StatusRole, StatusDerivation>,
 ): SemanticTokens {
-  const { primary, neutral, destructive, success, warning, info } = ramps;
+  const { primary, neutral } = ramps;
   const light = mode === "light";
 
   const background = light ? neutral[50] : neutral[950];
@@ -133,10 +148,14 @@ export function buildSemanticTokens(
 
   // Filled accents: lighter steps in dark mode so they stay luminous.
   const primaryFill = light ? primary[600] : primary[400];
-  const destructiveFill = light ? destructive[600] : destructive[400];
-  const successFill = light ? success[600] : success[400];
-  const warningFill = light ? warning[500] : warning[400];
-  const infoFill = light ? info[600] : info[400];
+
+  // Status fills come from the role derivation rather than a ramp step: each
+  // hue needs its own lightness to read correctly, and a single shared step
+  // cannot serve red and amber at once.
+  const destructiveFill = status.destructive.fill[mode];
+  const successFill = status.success.fill[mode];
+  const warningFill = status.warning.fill[mode];
+  const infoFill = status.info.fill[mode];
 
   const onFill = [WHITE, neutral[950]] as const;
 
@@ -218,6 +237,7 @@ export interface BuiltTheme {
   light: SemanticTokens;
   dark: SemanticTokens;
   chartAudit: Record<Mode, ReturnType<typeof generateChartPalette>["audit"]>;
+  status: Record<StatusRole, StatusDerivation>;
 }
 
 /**
@@ -230,8 +250,36 @@ export function defineTheme(config: ThemeConfig): BuiltTheme {
   const ramps = buildRamps(config);
   const checker = new ContrastChecker();
 
-  const light = buildSemanticTokens(ramps, "light", checker);
-  const dark = buildSemanticTokens(ramps, "dark", checker);
+  const status = deriveStatusSeeds(config.seeds.primary, {
+    harmony: config.statusHarmony,
+  });
+
+  // A status colour that reads as the brand colour is worse than a mismatched
+  // one: the badge stops carrying meaning. Only gate the roles we derived —
+  // an explicitly supplied seed is the author's call.
+  const derivedOnly = Object.fromEntries(
+    (Object.keys(status) as StatusRole[])
+      .filter((role) => !config.seeds[role])
+      .map((role) => [role, status[role]]),
+  ) as Record<StatusRole, StatusDerivation>;
+
+  const separationFailures = checkStatusSeparation(config.seeds.primary, derivedOnly);
+  if (separationFailures.length > 0) {
+    const lines = separationFailures.map(
+      (failure) =>
+        `  ${failure.a} vs ${failure.b}: ${failure.degrees}° apart ` +
+        `(needs ${failure.required}°)`,
+    );
+    throw new Error(
+      `Theme "${config.name}" has status colours too close to be told apart:\n` +
+        `${lines.join("\n")}\n` +
+        `The brand hue sits inside a status colour's usable range. Shift the ` +
+        `primary seed's hue, or supply an explicit seed for that status.`,
+    );
+  }
+
+  const light = buildSemanticTokens(ramps, "light", checker, status);
+  const dark = buildSemanticTokens(ramps, "dark", checker, status);
 
   const lightCharts = generateChartPalette(config.seeds.primary, "light", light.background);
   const darkCharts = generateChartPalette(config.seeds.primary, "dark", dark.background);
@@ -251,5 +299,6 @@ export function defineTheme(config: ThemeConfig): BuiltTheme {
     light,
     dark,
     chartAudit: { light: lightCharts.audit, dark: darkCharts.audit },
+    status,
   };
 }

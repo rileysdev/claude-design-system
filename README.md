@@ -61,10 +61,17 @@ Then `pnpm tokens`. The generator:
 2. Maps ramps onto semantic tokens separately for light and dark. Dark mode is a
    re-mapping, not an inversion: it lifts the accent steps and leans on borders
    rather than shadow.
-3. Enforces contrast — 4.5:1 for text, 3:1 for focus rings, and a separator
+3. Derives the status colours from the brand hue instead of hardcoding them.
+   Each of destructive/success/warning/info is pulled toward the primary for
+   cohesion, bounded by a hue band that keeps its meaning, then pushed away
+   again if it would be confusable with the brand — the case a warm primary
+   otherwise walks straight into. Fills use a per-role lightness, because amber
+   only reads as amber while it is light.
+4. Enforces contrast — 4.5:1 for text, 3:1 for focus rings, and a separator
    floor above the desktop convention because a 1.2:1 hairline vanishes on a
-   phone outdoors.
-4. Derives the 5 chart colours by searching hue spreads × lightness patterns for
+   phone outdoors — plus a 25° minimum hue separation between statuses and the
+   brand.
+5. Derives the 5 chart colours by searching hue spreads × lightness patterns for
    the palette with the widest colour-vision-deficiency separation, then snaps
    each swatch's lightness until it clears 3:1 against the surface.
 
