@@ -1,0 +1,539 @@
+{
+  "$description": "Forest — generated from seed colours; every pair contrast-checked at build time.",
+  "seeds": {
+    "primary": {
+      "$type": "color",
+      "$value": "oklch(0.55 0.13 158)"
+    }
+  },
+  "ramp": {
+    "primary": {
+      "50": {
+        "$type": "color",
+        "$value": "oklch(0.97 0.0074 158)"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "oklch(0.932 0.017 158)"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "oklch(0.882 0.0313 158)"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "oklch(0.809 0.0558 158)"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "oklch(0.707 0.0875 158)"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "oklch(0.623 0.1135 158)"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "oklch(0.546 0.1277 158)"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "oklch(0.488 0.1141 158)"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "oklch(0.424 0.0992 158)"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "oklch(0.379 0.0775 158)"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "oklch(0.282 0.0482 158)"
+      }
+    },
+    "neutral": {
+      "50": {
+        "$type": "color",
+        "$value": "oklch(0.985 0.0008 158)"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "oklch(0.967 0.0014 158)"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "oklch(0.928 0.0025 158)"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "oklch(0.872 0.0042 158)"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "oklch(0.707 0.0091 158)"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "oklch(0.551 0.0112 158)"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "oklch(0.446 0.0126 158)"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "oklch(0.373 0.014 158)"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "oklch(0.278 0.0136 158)"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "oklch(0.21 0.014 158)"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "oklch(0.13 0.0115 158)"
+      }
+    },
+    "destructive": {
+      "50": {
+        "$type": "color",
+        "$value": "oklch(0.97 0.0108 33)"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "oklch(0.932 0.0249 33)"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "oklch(0.882 0.0458 33)"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "oklch(0.809 0.0815 33)"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "oklch(0.707 0.1279 33)"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "oklch(0.623 0.1659 33)"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "oklch(0.546 0.19 33)"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "oklch(0.488 0.1801 33)"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "oklch(0.424 0.1543 33)"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "oklch(0.379 0.1132 33)"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "oklch(0.282 0.0705 33)"
+      }
+    },
+    "success": {
+      "50": {
+        "$type": "color",
+        "$value": "oklch(0.97 0.0086 133)"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "oklch(0.932 0.0197 133)"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "oklch(0.882 0.0361 133)"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "oklch(0.809 0.0643 133)"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "oklch(0.707 0.1009 133)"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "oklch(0.623 0.1309 133)"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "oklch(0.546 0.15 133)"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "oklch(0.488 0.1377 133)"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "oklch(0.424 0.1196 133)"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "oklch(0.379 0.0894 133)"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "oklch(0.282 0.0556 133)"
+      }
+    },
+    "warning": {
+      "50": {
+        "$type": "color",
+        "$value": "oklch(0.97 0.0064 92)"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "oklch(0.932 0.0146 92)"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "oklch(0.882 0.0269 92)"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "oklch(0.809 0.0479 92)"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "oklch(0.707 0.0752 92)"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "oklch(0.623 0.0975 92)"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "oklch(0.546 0.1117 92)"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "oklch(0.488 0.0998 92)"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "oklch(0.424 0.0867 92)"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "oklch(0.379 0.0666 92)"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "oklch(0.282 0.0414 92)"
+      }
+    },
+    "info": {
+      "50": {
+        "$type": "color",
+        "$value": "oklch(0.97 0.0061 228)"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "oklch(0.932 0.014 228)"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "oklch(0.882 0.0257 228)"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "oklch(0.809 0.0457 228)"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "oklch(0.707 0.0717 228)"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "oklch(0.623 0.093 228)"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "oklch(0.546 0.1065 228)"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "oklch(0.488 0.0952 228)"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "oklch(0.424 0.0827 228)"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "oklch(0.379 0.0635 228)"
+      },
+      "950": {
+        "$type": "color",
+        "$value": "oklch(0.282 0.0395 228)"
+      }
+    }
+  },
+  "light": {
+    "background": {
+      "$type": "color",
+      "$value": "oklch(0.985 0.0008 158)"
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "card": {
+      "$type": "color",
+      "$value": "oklch(1 0 0)"
+    },
+    "card-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "popover": {
+      "$type": "color",
+      "$value": "oklch(1 0 0)"
+    },
+    "popover-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "primary": {
+      "$type": "color",
+      "$value": "oklch(0.546 0.1277 158)"
+    },
+    "primary-foreground": {
+      "$type": "color",
+      "$value": "oklch(1 0 0)"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "oklch(0.967 0.0014 158)"
+    },
+    "secondary-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.21 0.014 158)"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "oklch(0.967 0.0014 158)"
+    },
+    "muted-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.446 0.0126 158)"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "oklch(0.967 0.0014 158)"
+    },
+    "accent-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.21 0.014 158)"
+    },
+    "destructive": {
+      "$type": "color",
+      "$value": "oklch(0.55 0.19 33)"
+    },
+    "destructive-foreground": {
+      "$type": "color",
+      "$value": "oklch(1 0 0)"
+    },
+    "success": {
+      "$type": "color",
+      "$value": "oklch(0.56 0.15 133)"
+    },
+    "success-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "oklch(0.8 0.16 92)"
+    },
+    "warning-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "info": {
+      "$type": "color",
+      "$value": "oklch(0.56 0.1092 228)"
+    },
+    "info-foreground": {
+      "$type": "color",
+      "$value": "oklch(1 0 0)"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "oklch(0.872 0.0042 158)"
+    },
+    "input": {
+      "$type": "color",
+      "$value": "oklch(0.707 0.0091 158)"
+    },
+    "ring": {
+      "$type": "color",
+      "$value": "oklch(0.623 0.1135 158)"
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "oklch(0.21 0 0 / 0.45)"
+    },
+    "chart-1": {
+      "$type": "color",
+      "$value": "#009e63"
+    },
+    "chart-2": {
+      "$type": "color",
+      "$value": "#5236b6"
+    },
+    "chart-3": {
+      "$type": "color",
+      "$value": "#009eb4"
+    },
+    "chart-4": {
+      "$type": "color",
+      "$value": "#be3300"
+    },
+    "chart-5": {
+      "$type": "color",
+      "$value": "#e05eb6"
+    }
+  },
+  "dark": {
+    "background": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "foreground": {
+      "$type": "color",
+      "$value": "oklch(0.985 0.0008 158)"
+    },
+    "card": {
+      "$type": "color",
+      "$value": "oklch(0.21 0.014 158)"
+    },
+    "card-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.985 0.0008 158)"
+    },
+    "popover": {
+      "$type": "color",
+      "$value": "oklch(0.21 0.014 158)"
+    },
+    "popover-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.985 0.0008 158)"
+    },
+    "primary": {
+      "$type": "color",
+      "$value": "oklch(0.707 0.0875 158)"
+    },
+    "primary-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "oklch(0.278 0.0136 158)"
+    },
+    "secondary-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.985 0.0008 158)"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "oklch(0.278 0.0136 158)"
+    },
+    "muted-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.707 0.0091 158)"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "oklch(0.278 0.0136 158)"
+    },
+    "accent-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.985 0.0008 158)"
+    },
+    "destructive": {
+      "$type": "color",
+      "$value": "oklch(0.7 0.19 33)"
+    },
+    "destructive-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "success": {
+      "$type": "color",
+      "$value": "oklch(0.72 0.15 133)"
+    },
+    "success-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "oklch(0.84 0.16 92)"
+    },
+    "warning-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "info": {
+      "$type": "color",
+      "$value": "oklch(0.72 0.1404 228)"
+    },
+    "info-foreground": {
+      "$type": "color",
+      "$value": "oklch(0.13 0.0115 158)"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "oklch(0.373 0.014 158)"
+    },
+    "input": {
+      "$type": "color",
+      "$value": "oklch(0.446 0.0126 158)"
+    },
+    "ring": {
+      "$type": "color",
+      "$value": "oklch(0.623 0.1135 158)"
+    },
+    "overlay": {
+      "$type": "color",
+      "$value": "oklch(0.13 0 0 / 0.65)"
+    },
+    "chart-1": {
+      "$type": "color",
+      "$value": "#00935b"
+    },
+    "chart-2": {
+      "$type": "color",
+      "$value": "#6047c8"
+    },
+    "chart-3": {
+      "$type": "color",
+      "$value": "#009bb0"
+    },
+    "chart-4": {
+      "$type": "color",
+      "$value": "#c13400"
+    },
+    "chart-5": {
+      "$type": "color",
+      "$value": "#de5bb4"
+    }
+  }
+}

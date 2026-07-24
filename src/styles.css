@@ -1,0 +1,122 @@
+/**
+ * Root stylesheet for the design system.
+ *
+ * This is the entry the design bundle's `styles.css` maps to: rendered designs
+ * receive only this file's transitive @import closure, so anything a component
+ * needs at runtime must be reachable from here.
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/tokens.css";
+
+/* Tailwind v4 scans these for utilities. */
+@source "./";
+
+/* Height-animated disclosure, driven by the measurement Radix exposes. */
+@theme {
+  --animate-accordion-down: accordion-down 220ms cubic-bezier(0.2, 0, 0, 1);
+  --animate-accordion-up: accordion-up 220ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+
+  html {
+    /* Never let iOS rescale text when a phone is rotated. */
+    -webkit-text-size-adjust: 100%;
+    /* Honour the notch/home indicator without every screen restating it. */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Grey flash on tap looks broken in an installed PWA. */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Pointer users get no focus ring; keyboard users always do. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Headings inherit the display treatment rather than the browser's. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Padding that respects the device's safe areas. */
+  .pt-safe {
+    padding-top: var(--safe-top);
+  }
+  .pb-safe {
+    padding-bottom: var(--safe-bottom);
+  }
+  .px-safe {
+    padding-left: var(--safe-left);
+    padding-right: var(--safe-right);
+  }
+  .min-h-screen-safe {
+    min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom));
+  }
+}
