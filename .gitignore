@@ -6,3 +6,15 @@ ds-bundle/
 *.tsbuildinfo
 .DS_Store
 .render-shots/
+
+# design-sync
+.design-sync/sb-reference/
+.design-sync/learnings/
+.design-sync/.cache/
+.design-sync/node_modules
+.design-sync/sb-build.log
+.design-sync/build.log
+.design-sync/validate.log
+.design-sync/driver.log
+.design-sync/upload-manifest.txt
+.ds-sync/
