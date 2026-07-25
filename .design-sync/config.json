@@ -1,0 +1,58 @@
+{
+  "projectId": "64488668-0a94-421d-a120-9126d7b940c7",
+  "shape": "storybook",
+  "pkg": "claude-design-system",
+  "globalName": "ClaudeDesignSystem",
+  "entry": "dist/index.js",
+  "storybookConfigDir": ".storybook",
+  "storybookStatic": ".design-sync/sb-reference",
+  "buildCmd": "pnpm --config.verify-deps-before-run=false run build",
+
+  "provider": {
+    "component": "ThemeProvider",
+    "props": { "defaultTheme": "default", "defaultMode": "light" }
+  },
+
+  "overrides": {
+    "Select": { "cardMode": "single", "primaryStory": "Variants" },
+    "DropdownMenu": { "cardMode": "single", "primaryStory": "Variants" },
+    "Sheet": { "cardMode": "single", "primaryStory": "Variants" }
+  },
+
+  "titleMap": {
+    "Loadingandprogress": "Spinner",
+    "Menusandpopovers": "DropdownMenu",
+    "Appbarandtabbar": "AppBar",
+    "Selectioncontrols": "Checkbox",
+    "Toast": "Toaster",
+    "Tasks": null,
+    "Colors": null,
+    "Typography": null,
+    "Spacing,radiusandelevation": null
+  },
+
+  "docsMap": {
+    "Accordion": "docs/Disclosure.prompt.md",
+    "Tabs": "docs/Disclosure.prompt.md",
+    "Alert": "docs/Feedback.prompt.md",
+    "EmptyState": "docs/Feedback.prompt.md",
+    "Toaster": "docs/Feedback.prompt.md",
+    "Spinner": "docs/Feedback.prompt.md",
+    "Badge": "docs/Badge.prompt.md",
+    "Button": "docs/Button.prompt.md",
+    "Card": "docs/Card.prompt.md",
+    "Dialog": "docs/Dialog.prompt.md",
+    "FormField": "docs/FormField.prompt.md",
+    "Input": "docs/Input.prompt.md",
+    "List": "docs/List.prompt.md",
+    "DropdownMenu": "docs/Menus.prompt.md",
+    "AppBar": "docs/Navigation.prompt.md",
+    "Pagination": "docs/Layout.prompt.md",
+    "Select": "docs/Select.prompt.md",
+    "Checkbox": "docs/SelectionControls.prompt.md",
+    "Separator": "docs/Layout.prompt.md",
+    "Sheet": "docs/Sheet.prompt.md",
+    "Stack": "docs/Layout.prompt.md",
+    "Textarea": "docs/Textarea.prompt.md"
+  }
+}
